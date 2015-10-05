@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anagramator</title>
+    <meta name="viewport" content="width = device-width">
+</head>
+<body>
+<h2>Anagramator</h2>
+
+Lower case letters jumbled.
+<br>
+Upper case letters fixed in place.
+<br>
+
+<SCRIPT type="text/javascript">
+function jumble() {
+	fname = document.f1.t1.value;
+	len = fname.length;
+	aryText = new Array(len);
+
+	for (i = 0; i < len; i++) {
+		aryText[i] = fname.charAt(i)
+	}
+
+	newnumber = ""
+	temp = ""
+
+	for (i = len - 1; i > 0; i--) {
+		if (aryText[i] == aryText[i].toLowerCase() && aryText[i] != " "){
+            do {newnumber = Math.floor(Math.random() * (i + 1))}
+            while (aryText[newnumber] == aryText[newnumber].toUpperCase() || aryText[newnumber] == " ")
+            
+            temp = aryText[i]
+            aryText[i] = aryText[newnumber]
+            aryText[newnumber] = temp
+	    }
+    }
+
+	NewName = aryText.join("")
+
+	document.f1.t1.value = NewName
+    var aryWords = NewName.split(" ");
+    var letterCount = " ";
+    for (i = 0; i < aryWords.length; i++) {
+        letterCount=letterCount + aryWords[i].length + "/"
+    }
+	document.getElementById("strlength").innerHTML=letterCount.substring(0, letterCount.length - 1);
+}
+
+</SCRIPT>
+
+<FORM NAME = f1>
+<INPUT TYPE = text NAME = t1 SIZE = 25 VALUE ="" style="font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;"><a id="strlength"></a>
+<br><br>
+<INPUT TYPE = Button VALUE = "Jumble" onClick = jumble()>
+</FORM>
+
+</body>
+</html>
