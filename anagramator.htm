@@ -2,58 +2,59 @@
 <html>
 <head>
     <title>Anagramator</title>
-    <meta name="viewport" content="width = device-width">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 </head>
 <body>
-<h2>Anagramator</h2>
+<h2 style="font-size: 32px;">Anagramator</h2>
 
-Lower case letters jumbled.
-<br>
-Upper case letters fixed in place.
-<br>
+<div style="margin: 5px;">
+<div>Lower case letters jumbled.</div>
+<div>Upper case letters fixed in place.</div>
+</div>
 
-<SCRIPT type="text/javascript">
+<script type="text/javascript">
 function jumble() {
-	fname = document.f1.t1.value;
-	len = fname.length;
-	aryText = new Array(len);
+    fname = document.f1.t1.value;
+    len = fname.length;
+    aryText = new Array(len);
 
-	for (i = 0; i < len; i++) {
-		aryText[i] = fname.charAt(i)
-	}
+    for (i = 0; i < len; i++) {
+        aryText[i] = fname.charAt(i)
+    }
 
-	newnumber = ""
-	temp = ""
+    newnumber = ""
+    temp = ""
 
-	for (i = len - 1; i > 0; i--) {
-		if (aryText[i] == aryText[i].toLowerCase() && aryText[i] != " "){
+    for (i = len - 1; i > 0; i--) {
+        if (aryText[i] == aryText[i].toLowerCase() && aryText[i] != " "){
             do {newnumber = Math.floor(Math.random() * (i + 1))}
             while (aryText[newnumber] == aryText[newnumber].toUpperCase() || aryText[newnumber] == " ")
-            
+
             temp = aryText[i]
             aryText[i] = aryText[newnumber]
             aryText[newnumber] = temp
-	    }
+        }
     }
 
-	NewName = aryText.join("")
+    NewName = aryText.join("")
 
-	document.f1.t1.value = NewName
+    document.f1.t1.value = NewName
     var aryWords = NewName.split(" ");
     var letterCount = " ";
     for (i = 0; i < aryWords.length; i++) {
         letterCount=letterCount + aryWords[i].length + "/"
     }
-	document.getElementById("strlength").innerHTML=letterCount.substring(0, letterCount.length - 1);
+    document.getElementById("strlength").innerHTML=letterCount.substring(0, letterCount.length - 1);
 }
 
-</SCRIPT>
+</script>
 
-<FORM NAME = f1>
-<INPUT TYPE = text NAME = t1 SIZE = 25 VALUE ="" style="font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;"><a id="strlength"></a>
+<form name="f1">
+<input type="text" name="t1" size="25" value ="" style="font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace; font-size: 20px; padding:5px;"><a id="strlength"></a>
 <br><br>
-<INPUT TYPE = Button VALUE = "Jumble" onClick = jumble()>
-</FORM>
+<input type="button" value="Jumble" onClick="jumble()" style="width:100%; max-width: 400px; padding: 20px; font-size:18px; background-color:#dddddd">
+</form>
 
 </body>
 </html>
